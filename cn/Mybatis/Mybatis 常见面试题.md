@@ -80,3 +80,60 @@
 ​	**参数绑定阶段，**Mybatis会根据动态sql 的参数占位符选择合适的方法获取值（如#{}就是反射获取，）进行参数绑定。
 
 ​	**SQL语句执行阶段：**Mybatis会将最红的SQL语句发送给数据库执行， 并获取结果
+
+## Mybatis的延迟加载的实现原理
+
+​	延迟查询就是一种策略，在需要的时候加载对象的属性或关联的数据，而不是在初始化的时候就加载。
+
+​	Mybatis支持association（一对一）和collection（一对多）关联对象的延迟加载。在Mybatis配置文件lazyLoadingEnabled可以设置。
+
+​	当为true的时候，启动延迟加载，这意味着关联对象或集合只会在首次访问进行加载。 
+
+​	当为false的时候，禁止延迟加载。在这种情况下，关联对象或集合会在初始查询时一并进行查询。
+
+~~~java
+<resultMap id="orderResultMap" type="Order">
+  <id property="id" column="id" />
+  <result property="orderNumber" column="order_number" />
+  <association property="customer" column="customer_id" select="selectCustomerById" fetchType="lazy" />
+  <collection property="items" column="id" ofType="Item" select="selectItemsByOrderId" fetchType="lazy" />
+</resultMap>
+
+<select id="selectOrderById" resultMap="orderResultMap">
+  SELECT * FROM orders WHERE id = #{id}
+</select>
+
+<select id="selectCustomerById" resultType="Customer">
+  SELECT * FROM customers WHERE id = #{customerId}
+</select>
+
+<select id="selectItemsByOrderId" resultType="Item">
+  SELECT * FROM items WHERE order_id = #{id}
+</select>
+
+~~~
+
+如果上述的selectOrderById是通过list遍历出来的，假设list的长度是100。
+
+那么我们先会批量查询出来我们负责的数据，然后在通过id出发其他sql进行逐个获取关联对象
+
+## 简述Mybatis的xml映射文件和Mybatis内部数据结构之间的映射关系
+
+​	Mybatis会在运行的时候解析XML文件，然后将他们转换为数据结构，将他们保存在Configuration对象。当我们的执行数据库操作的时候，Mybatis会使用Configuration对象中的信息进行SQL语句的解析、参数的映射、查询结果的映射等操作，从而实现Java对象与数据库之间的映射。
+
+## Mybatis为什么被称呼半自动ORM，和全自动的ORM有什么区别。
+
+​	因为开发人员需要更多的参与映射的定义和控制，需要手动编写SQL和XML映射，这为开发人员提供了更大的灵活。
+
+​	**在SQL控制：**在全自动ORM无需手动写SQL，而半自动需要手动写SQL。Mybaits只负责执行这些SQL将结果映射到对象中，这种灵活可以让开发者更加控制sql的优化和执行。
+
+​	**对象-映射的关系：**在全自动ORM通常使用注解相关的方法来定义对象与数据库表之间的映射关系，开发人员只需要在对象上添加注解或者映射文件即可。而在Mybatis中需要手动编写XML文件来定义对象与数据库表之间的映射关系，需要手动指定列的对饮关系以及sql语句。
+
+​	**性能方面：**全自动的ORM不像半自动一样可以自定义SQL语句，自定义的SQL语句我们可以进行一些SQL优化，解决了一些潜在的性能问题。
+
+​	
+
+## Mybatis可以映射枚举嘛
+
+​	使用<resultMap>和<result> 可以映射枚举类型
+
