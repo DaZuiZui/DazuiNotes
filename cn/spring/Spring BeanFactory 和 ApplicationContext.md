@@ -281,7 +281,7 @@ public class MyBean {
 
 ### RootBeanDifinition
 
-    RootBeanDIfinition是BeanDifinition的另外一个实现类，他可以贡献作用域（Scope）和初始化方法（init-method）等配置属性。
+    RootBeanDIfinition是BeanDifinition的另外一个实现类，他可以共享作用域（Scope）和初始化方法（init-method）等配置属性。
 
 ```java
 @Configuration
