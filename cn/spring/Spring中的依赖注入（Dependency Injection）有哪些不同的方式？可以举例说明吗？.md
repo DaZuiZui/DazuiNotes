@@ -14,6 +14,10 @@ public class MyClass {
 }
 ~~~
 
+​	**使用场景：** 构造函数注入比较适合强制依赖的情况，在创建Bean的实列时，比如提供必须的依赖项。
+
+​	**优势：**构造函数初始化可以保证对象在创建时是完全初始化的，避免了构造函数之后的状态不一致。它还使得依赖关系在Bena整个生命周期保持不变，提高了代码的可测性。
+
 ## setter方法注入
 
 使用set方法进行注入
@@ -28,6 +32,10 @@ public class MyClass {
 }
 
 ~~~
+
+​	 **使用场景：**Setter方法注入通常适用于可选依赖的情况，如果某些依赖不需要提供可以在对象创建后随时修改。如果需要修改就调用set方法就行。
+
+​	 **优点：** Setter提供了灵活的注入方式，可以在运行时动态修改依赖关系，也可以通过setter方法注入不同的依赖类，适用于不同的用例。
 
 ## 接口注入
 
@@ -45,11 +53,13 @@ public class MyBean implements MyInterface {
     public void injectDependency(MyDependency myDependency) {
         this.myDependency = myDependency;
     }
-
-    // 其他方法...
 }
 
 ~~~
+
+​	 **使用场景：**这种方法不太常见，如果有特殊的需求必须使用接口进行注入那么就可以使用该方法
+
+​    **优势：**        通过接口进行注入。
 
 ## 注解注入
 
@@ -68,6 +78,10 @@ public class MyBean {
     // 其他方法...
 }
 ~~~
+
+​	**使用场景：** 通常用于现代的Spring应用程序
+
+​	**优势：**简化了配置提高了代码的可读性。Autowried可以在构造方法、setter方法、字段上进行注入。
 
 ## XML注解
 
@@ -94,3 +108,6 @@ public class MyBean {
 
 ~~~
 
+**使用场景：**比较适用于传统的Spring项目	
+
+**优势：** 通过XML配置注入可以更高度的定制Bean的创建过程
