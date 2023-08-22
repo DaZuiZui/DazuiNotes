@@ -11,3 +11,4 @@
 ​		SpringBoot拿到了第三方jar包，然后在通过SPring提供的ImportSelector接口，实现对这些配置类的动态加载。
 
 ​	在我看来Springboot约定大于配置的思想主要让程序员专注于业务层上的开发。
+
