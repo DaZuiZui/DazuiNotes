@@ -35,3 +35,9 @@ select count(0) as 'count(*)' from .....
 ## MyISAM
 
 MyISAM执行一个count语句时间复杂度是O(1)因为在我们MYISAM引擎下维护一个row_count变量用来记录个数，因为表锁保证一致性，所以执行row_count就是count函数的执行结果。
+
+## 如何优化count在innodb
+
+如果我们业务精确性不是很高可以像Google搜索一样取近值。
+
+如果精确性很大，可以建立外表来记录数量。
