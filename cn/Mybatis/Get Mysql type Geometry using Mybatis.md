@@ -1,8 +1,10 @@
-# Get Mysql type Geometry using Mybatis
+# Java使用Mybatis获取数据库Geometry
 
 
 
 ## 方案A 使用ST_AsText(l.coordinates)  查询速度会慢因转换字符串数据大小会大
+
+将几何对象转换为文本
 
 ### mapper层
 
@@ -20,6 +22,8 @@ public class Entry implements Serializable {
   	//省略set get 构造方法
 }
 ```
+
+
 
 ## 方案B 获取geometry的字节流
 
