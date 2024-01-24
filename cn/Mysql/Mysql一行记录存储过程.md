@@ -48,7 +48,7 @@ B+tree每一层都是用双向脸部连接的， 可能两个页相隔特别远�
 
 #### NULL值列表
 
-表中有一些列可能存放null值，但是把null值存入进去是比较浪费空间的，所以COmpact行把这些值为null的存储到Null值列表中。
+表中有一些列可能存放null值，但是把null值存入进去是比较浪费空间的，所以Compact行把这些值为null的存储到Null值列表中。
 
 如果二进制位的值为1，那么该值为NULL，
 
@@ -70,7 +70,7 @@ NULL值列表必须用整个字节的位表示（1字节8位），二进制个�
 
 ![image-20240102140708814](/Users/yangyida/Library/Application Support/typora-user-images/image-20240102140708814.png)
 
-![image-20240102140740490](/Users/yangyida/Library/Application Support/typora-user-images/image-20240102140740490.png)那么最后的的结果为0x004
+![image-20240123140635941](/Users/yangyida/Library/Application Support/typora-user-images/image-20240123140635941.png)那么最后的的结果为0x004
 
 ##### 每个字段都有NULL值列表吗？
 
