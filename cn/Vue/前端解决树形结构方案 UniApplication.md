@@ -700,6 +700,8 @@ function submit(){
 
 ## 使用数据
 
+要注意，children不能为[]，只能为null
+
 ~~~js
 let list =  [
           {
