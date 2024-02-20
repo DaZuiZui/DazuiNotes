@@ -142,6 +142,8 @@ sleep会自动苏醒， wait需要其他线程叫醒，wait(long time)也可以�
 
 sleep是Thread类的静态方法，wait是Object的本地方法.	
 
+wait(long time)回释放锁，只不过它可以被提前叫醒
+
 ## 为什么wait方法在Object
 
 因为wait关注点是在有对象锁的线程实现等待，会自动释放当前线程锁占用的锁进入waiting状态，因为，每个对象都有对象锁。

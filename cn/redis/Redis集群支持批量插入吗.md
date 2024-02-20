@@ -8,4 +8,4 @@ mset {biaoshi}:{userId}:1:name a {userId}:1:age 17
 
 如果一条落在节点1一条在节点2就会报错，因为Redis要求所有的mset在一个slot上。
 
-只需要在前面创建一个共同标识就可以的了
+只需要在前面创建一个共同标识就可以的了k k k
