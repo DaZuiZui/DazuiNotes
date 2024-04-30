@@ -1,4 +1,4 @@
-# Mysql MVVC
+# Mysql MVCC
 
 MVVC就是用管理快照实现多版本并发控制吗，保证了数据库的隔离性。
 
