@@ -1,0 +1,3 @@
+# HashMap红黑树的key是怎么查询的
+
+首先他会看当前hashcode是否一样，如果当前key的hashcod小于当前节点那么就向左，否则就向右。找
