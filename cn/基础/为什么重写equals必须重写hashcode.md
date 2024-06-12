@@ -1,3 +1,9 @@
+equals就是判断两个对象是否相等，**Hashcode就是返回对象的哈希码，用于基于Hash的数据结构定位对象。**
+
+他们的约定就是**如果equals方法相同那么他们hashcode必须相同**。如果hashcode相同他们equals未必相等，他们会被放到同一个桶里，然后再用equals方法比较。
+
+也就是说重写equals方法必须重写hashcode。比如hashmap来说，如果equlas相同，他们的hashcode也必须相同，如果重写了equals不重写hashcode，可能会出现问题。
+
 # 为什么重写equals必须重写hashcode?
 
 已HashMap和HashSet为例子吧，如果我们重写equals方法没有重写Hashcode回导致Hash 表无法正确的存储对象，因为他俩会根据Hashcode来确定存储位置，如果我们没重写可能会根据Object的类而实现，及时通过我们的equals判断是相同的，但是他们的hashcode也可能不同，导致我们Hash表无法正确存储，可能会出现一些重复的k-v，也会无法正确的找到对象。

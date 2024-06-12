@@ -6,7 +6,7 @@
 
 线程共享的地方有堆Heap，
 
-线程私有的有虚拟机栈（VM statck）还有本地方法栈（Native mathod Stack），还有程序计数器（Program counter register）
+线程私有的有虚拟机栈（JVM statck）还有本地方法栈（Native mathod Stack），还有程序计数器（Program counter register）
 
 本地内存有 元空间（MateSpace） 线程共享
 
