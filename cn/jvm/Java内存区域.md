@@ -30,7 +30,7 @@ jvm栈是jvm的核心，除了本地方法所又的方法调用都是通过栈�
 
 我们的栈的内存是可以动态扩展的，如果我们无法申请到更大的内存就会跑出OutOfMemoryError异常。但是要注意我们的HotSpot虚拟机是不支持的动态扩展的，如果申请内存成功就不会抛出OutOfMemoryError，否则就会抛出。
 
-### 本地方法栈
+### 本地方法栈 线程私有
 
 本地方法栈和jvm栈一样，只不过本地方法栈是为了java服务。本地方法栈也会出现**StackOverFlowError**和**StackOverFlowError**
 
