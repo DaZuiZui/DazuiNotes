@@ -91,7 +91,7 @@ mysql执行查询过程中临时使用内存管理连接对象，这些连接对
 比如我们使用这条sql，很明显会使用逐渐索引
 
 ~~~sql
-select * from user where di = 1
+select * from user where id = 1
 ~~~
 
 比我们我们name也是普通索引，id是主键，我们的优化器就会考虑使用哪个成本最小，很明显使用name的索引最小，使用id的成本会大很多，因为二级索引就可以直接查询到结果。
