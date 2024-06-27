@@ -50,3 +50,37 @@ public class Main {
 
 ~~~
 
+## 如果动态多态方法是静态会发生什么
+
+~~~java
+class A {
+    static void display() {
+        System.out.println("Static display method in class A");
+    }
+}
+
+class B extends A {
+    static void display() {
+        System.out.println("Static display method in class B");
+    }
+
+    static void uniqueMethod() {
+        System.out.println("Unique static method in class B");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        A a = new B(); // 多态引用
+        a.display();   // 调用的是 A 的静态方法，因为静态方法在编译时绑定
+        
+        // 调用 B 的静态方法
+        B.display();   // 直接使用类名调用
+        
+        // 调用 B 的特有静态方法
+        B.uniqueMethod();
+    }
+}
+~~~
+
+调用的是A的静态方法，因为display方法属于类，他在编译的时候就确定了，是通过引用变量的类型决定的，而不是引用实际对象类型。
