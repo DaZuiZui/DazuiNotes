@@ -12,6 +12,6 @@ Buffer Pool的优化方案有使用LRU替换策略，这意味着最近访问的
 select * from tables1 where id = 1
 ~~~
 
-这时候Mysql会检查Buffer Pool是否存放了ID为1001的员工信息的数据页，如果改数据已经在Buffer Pool中，Mysql将直接从内存中读取数据，无需IO操作，否则话Mysql就会去磁盘读取数据页（16kb），这回导致IO操作，相比内存IO需要更多的时间。
+这时候Mysql会检查Buffer Pool是否存放了ID为1001的员工信息的数据页，如果该数据已经在Buffer Pool中，Mysql将直接从内存中读取数据，无需IO操作，否则话Mysql就会去磁盘读取数据页（16kb），这回导致IO操作，相比内存IO需要更多的时间。
 
 因为在mysql查询一条的数据的时候，他不是单纯的拿一条数据出来，而是把这条数据的数据页读取出来再拿该数据页的一条。
