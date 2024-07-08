@@ -12,3 +12,8 @@
 
 ​	在我看来Springboot约定大于配置的思想主要让程序员专注于业务层上的开发。
 
+
+
+## 说几个starter
+
+比如spring-boot-starter-web、spring-boot-starter-mail等
