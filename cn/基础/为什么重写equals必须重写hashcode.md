@@ -6,7 +6,7 @@ equals就是判断两个对象是否相等，**Hashcode就是返回对象的哈�
 
 # 为什么重写equals必须重写hashcode?
 
-已HashMap和HashSet为例子吧，如果我们重写equals方法没有重写Hashcode回导致Hash 表无法正确的存储对象，因为他俩会根据Hashcode来确定存储位置，如果我们没重写可能会根据Object的类而实现，及时通过我们的equals判断是相同的，但是他们的hashcode也可能不同，导致我们Hash表无法正确存储，可能会出现一些重复的k-v，也会无法正确的找到对象。
+已HashMap和HashSet为例子吧，如果我们重写equals方法没有重写Hashcode会导致Hash 表无法正确的存储对象，因为他俩会根据Hashcode来确定存储位置，如果我们没重写可能会根据Object的类而实现，即使通过我们的equals判断是相同的，但是他们的hashcode也可能不同，导致我们Hash表无法正确存储，可能会出现一些重复的k-v，也会无法正确的找到对象。
 
 ~~~java
 import java.util.HashMap;
