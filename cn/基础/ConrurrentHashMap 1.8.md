@@ -1,15 +1,13 @@
 # ConrurrentHashMap 1.8
 
-在ConrurrectHashMap内部有16个segment，每个segment都可以看作一个独立的Hashmap。
+## 如何保证安全
 
-## 插入
+ 刚开始会使用CAS操作来进行无锁的并发更新，如果更新失败就会使用synchronized锁在特定的桶和节点上减少锁竞争和性能开销。。
 
-首先根据我们的hashcode所对应的segment，然后在这个segment找到对应的桶，通过CAS算法进行插入（预期值和当前值对比和版本号）。
+## hash冲突
 
-## 扩容
-
-如果A segment扩容不会影响其他segment工作的， 因为他们都是独立的Hashmap。就算A segment正在扩容也不会影响A的查询，因为他有2个segment ，一个old segment一个 new segment 。
-
-
-
-这种设计使得COncurrecthashmap能够在高并发的环境保持高效的性能，保证了线程安全。
+```
+url: jdbc:mysql://39.107.104.247:3306/glacier_chat_know?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+username: root
+password: Glacierwisdom1129
+```
