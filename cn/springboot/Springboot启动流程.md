@@ -2,7 +2,7 @@
 
 1. **加载启动类**：
    - Spring Boot应用程序通常以一个类作为启动类，该类使用 `@SpringBootApplication` 注解标记。
-   - 启动类的主要任务是加载Spring Boot的配置和启动Spring Boot的容器。
+   - 启动类的主要任务是加载Spring Boot的配置和启动Spring的容器。
 
 2. **加载配置**：
    - Spring Boot采用约定大于配置的原则，使用默认配置文件名 `application.yml` 或 `application.properties`。
