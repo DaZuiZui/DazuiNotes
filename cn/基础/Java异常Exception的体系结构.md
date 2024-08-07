@@ -1,6 +1,6 @@
 # Java异常Exception的体系结构
 
-Java异常体系主要是**Thtrowable**为根，它主要有两个重要的子类。**Error**和**Exception**。
+Java异常体系主要是**Throwable**为根，它主要有两个重要的子类。**Error**和**Exception**。
 
 ## Error
 
