@@ -1,0 +1,3 @@
+# Mybatis和JDBC的关系
+
+MyBatis和JDBC之间的关系可以理解为MyBatis是对JDBC的一个封装和扩展。JDBC是底层的标准API，而MyBatis通过简化和自动化一些常见的数据库操作，减少了开发者的工作量，同时保留了对SQL的灵活控制。因此，MyBatis既继承了JDBC的强大功能，又改善了使用体验。
