@@ -40,7 +40,21 @@ Bean是通过配置文件（XML文件）或注解进行定义和配置。它可�
 
 ### 3.初始化阶段
 
-    在属性赋值完成后，容器会调用Bean的初始化方法（如果定义了话）。这个初始化方法可以是自定义方法，也可以是实现了特定接口的方法（如InitializingBean接口的afterPropertiesSet（)）方法，或者使用PostConstruct注解。开发人员可以在初始化方法中执行一些特定的逻辑。 
+在属性赋值完成后，容器会调用Bean的初始化方法（如果定义了话）。这个初始化方法可以是自定义方法，也可以是实现了特定接口的方法（如InitializingBean接口的afterPropertiesSet（)）方法，或者使用PostConstruct注解。开发人员可以在初始化方法中执行一些特定的逻辑。 
+
+
+
+初始化方法主要有3个
+
+**优先级最高的：`@PostConstruct`**
+
+**第二高的： **实现`InitializingBean`接口：
+
+**最低的** @Bean(initMethod = "init")
+
+他们三个不会互相排斥，会依次生效。
+
+**顺序**：`@PostConstruct` -> `afterPropertiesSet()` -> `initMethod`。
 
 **在初始化方法后执行**
 
