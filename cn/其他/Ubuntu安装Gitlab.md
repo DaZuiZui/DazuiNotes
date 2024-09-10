@@ -25,7 +25,7 @@ sudo apt install -y postfix
 1. 下载GitLab的安装脚本：
 
 ```bash
-curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+https://packages.gitlab.com/gitlab/gitlab-ce
 ```
 
 2. 安装GitLab：
