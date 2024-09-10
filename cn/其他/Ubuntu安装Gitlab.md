@@ -1,4 +1,7 @@
 # Ubuntu install Gitlab
+
+## 步骤1
+
 首先，更新你的系统软件包，以确保你有最新的安全补丁和更新：
 
 ```bash
@@ -6,7 +9,7 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
-### 步骤 2：安装依赖项
+## 步骤 2：安装依赖项
 在安装GitLab之前，你需要确保安装了以下必要的依赖项：
 
 ```bash
@@ -21,7 +24,7 @@ sudo apt install -y postfix
 
 在安装Postfix时，它会提示你配置“邮件配置类型”。选择 `Internet Site`，然后设置系统邮件名称为你的域名或默认配置即可。
 
-### 步骤 3：安装GitLab的官方包
+## 步骤 3：安装GitLab的官方包
 1. 下载GitLab的安装脚本：
 
 ```bash
@@ -53,7 +56,7 @@ or 修改指定ip端口
 sudo vim /etc/gitlab/gitlab.rb
 ~~~
 
-### 步骤 4：配置防火墙（可选）
+## 步骤 4：配置防火墙（可选）
 如果你使用了防火墙，需要允许HTTP和HTTPS流量。可以运行以下命令：
 
 ```bash
@@ -62,7 +65,7 @@ sudo ufw allow https
 sudo ufw allow OpenSSH
 ```
 
-## 依次输入下面的操作命令
+## 步骤 5：依次输入下面的操作命令启动配置
 
 ~~~jav
 # 停止gitlab服务 
@@ -82,7 +85,7 @@ sudo systemctl enable gitlab-runsvdir.service
 
 ~~~
 
-## 初始化账号密码
+## 步骤 6：初始化账号密码
 
 ~~~java
 #切换路径
@@ -105,5 +108,11 @@ u.save!
 
 #退出
 exit
+~~~
+
+or 获取临时密码
+
+~~~java
+cat /etc/gitlab/initial_root_password
 ~~~
 
