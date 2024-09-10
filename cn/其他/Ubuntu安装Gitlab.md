@@ -53,11 +53,7 @@ or 修改指定ip端口
 sudo vim /etc/gitlab/gitlab.rb
 ~~~
 
-### 步骤 4：配置并启动GitLab
-
-安装完成后，GitLab会自动启动并运行。在浏览器中访问 `http://your_domain_or_IP`，可以看到GitLab的界面。
-
-### 步骤 5：配置防火墙（可选）
+### 步骤 4：配置防火墙（可选）
 如果你使用了防火墙，需要允许HTTP和HTTPS流量。可以运行以下命令：
 
 ```bash
@@ -66,12 +62,7 @@ sudo ufw allow https
 sudo ufw allow OpenSSH
 ```
 
-### 步骤 6：初次登录
-
-
-
-
-## 基本操作命令
+## 依次输入下面的操作命令
 
 ~~~jav
 # 停止gitlab服务 
@@ -89,5 +80,30 @@ sudo gitlab-ctl start
 # 启用开机自启动
 sudo systemctl enable gitlab-runsvdir.service
 
+~~~
+
+## 初始化账号密码
+
+~~~java
+#切换路径
+cd /opt/gitlab/bin/ ​
+
+#打开控制台
+sudo gitlab-rails console -e production ​
+ 
+#查询用户账号信息并赋值给u
+u=User.where(id:1).first​
+
+#设置root的密码
+u.password='wxy123456'
+
+#确认密码
+u.password_confirmation='wxy123456'
+
+#保存信息(注意有个感叹号）
+u.save!
+
+#退出
+exit
 ~~~
 
