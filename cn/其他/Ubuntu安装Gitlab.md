@@ -47,7 +47,14 @@ sudo dpkg -i gitlab-ce_16.2.1-ce.0_amd64.deb
 sudo EXTERNAL_URL="http://your_domain_or_IP" apt install -y gitlab-ee
 ```
 
+or 修改指定ip端口
+
+~~~JAVA
+sudo vim /etc/gitlab/gitlab.rb
+~~~
+
 ### 步骤 4：配置并启动GitLab
+
 安装完成后，GitLab会自动启动并运行。在浏览器中访问 `http://your_domain_or_IP`，可以看到GitLab的界面。
 
 ### 步骤 5：配置防火墙（可选）
@@ -60,7 +67,27 @@ sudo ufw allow OpenSSH
 ```
 
 ### 步骤 6：初次登录
-1. 打开浏览器，访问你设置的域名或IP地址。
-2. GitLab会要求你设置管理员密码。输入新的密码后，你可以使用默认的用户名 `root` 和你刚设置的密码登录GitLab。
 
-这样，你就成功在Ubuntu上安装了GitLab。
+
+
+
+## 基本操作命令
+
+~~~jav
+# 停止gitlab服务 
+sudo gitlab-ctl stop ​
+
+# 启动gitlab服务 
+sudo gitlab-ctl reconfigure ​
+
+# 重启所有gitlab组件 
+sudo gitlab-ctl restart ​
+
+# 启动所有gitlab组件 
+sudo gitlab-ctl start
+
+# 启用开机自启动
+sudo systemctl enable gitlab-runsvdir.service
+
+~~~
+
