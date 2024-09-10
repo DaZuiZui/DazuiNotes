@@ -30,6 +30,15 @@ curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script
 
 或者去https://packages.gitlab.com/gitlab/gitlab-ce
 
+~~~java
+sudo apt --fix-broken install
+sudo apt-get update
+sudo apt-get upgrade
+sudo dpkg -i gitlab-ce_16.2.1-ce.0_amd64.deb
+~~~
+
+
+
 2. 安装GitLab：
 
 根据你的域名或IP地址安装GitLab，将 `http://your_domain_or_IP` 替换为你的实际域名或服务器IP：
