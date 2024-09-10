@@ -95,10 +95,10 @@ sudo gitlab-rails console -e production ​
 u=User.where(id:1).first​
 
 #设置root的密码
-u.password='wxy123456'
+u.password='root123456'
 
 #确认密码
-u.password_confirmation='wxy123456'
+u.password_confirmation='root123456'
 
 #保存信息(注意有个感叹号）
 u.save!
