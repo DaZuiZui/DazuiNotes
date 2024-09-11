@@ -128,3 +128,4 @@ ruby_block[wait for redis service socket] action run is blocking installation gi
 /opt/gitlab/embedded/bin/runsvdir-start &
 ~~~
 
+参考文档：https://gitlab.com/gitlab-org/omnibus-gitlab/-/issues/4257
