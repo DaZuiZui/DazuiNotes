@@ -116,3 +116,15 @@ or 获取临时密码
 cat /etc/gitlab/initial_root_password
 ~~~
 
+## 如果发现阻止安装
+
+~~~java
+ruby_block[wait for redis service socket] action run is blocking installation gitlab-ee (11.9.6-ee.0)
+~~~
+
+输入：
+
+~~~java
+/opt/gitlab/embedded/bin/runsvdir-start &
+~~~
+
