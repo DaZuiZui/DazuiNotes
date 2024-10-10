@@ -164,7 +164,7 @@ this is js file
     - [id].ts
 ~~~
 
-~~~javas
+~~~tsx
 // server/api/Helloa/[id].js
 import db from '~/conf/db';
 
@@ -181,6 +181,8 @@ export default defineEventHandler(async (event) => {
         });
 });
 ~~~
+
+## 传递
 
 ## 防止sql注入的方法
 
@@ -222,3 +224,6 @@ export default {
 ### D. use https
 
 通过 HTTPS 保护数据传输，防止中间人攻击（MITM），确保数据的安全性。
+
+
+
