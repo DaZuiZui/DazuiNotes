@@ -58,3 +58,76 @@ public class Main {
 
 
 如果我们要进行重写要保证2个对象通过equals方法判断相等，他们的hashCode也要返回相同的值。这样才能保证对象相等和哈希值的一致性，确保使用集合不发生意外。
+
+## equals和hashcode的检查顺序
+
+是先判断hashcode然后在判断equals更加精确的判断。
+
+## 场景题
+
+~~~java
+User user1 = new User("user1",18,1);
+User user2 = new User("user1",18,1);
+User user3 = new User("user3",19,1);
+怎么满足map.get(1) == map.get(user2) !=  map.get(user3)
+~~~
+
+`map.get(1)` 的结果需要等于 `map.get(user2)`，这说明 `1` 和 `user2` 的键需要被视为相等。
+
+`map.get(user2)` 和 `map.get(user3)` 不相等，这说明 `user2` 和 `user3` 的键不能被视为相等。
+
+~~~java
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+public class Main {
+    public static void main(String[] args) {
+        // 自定义 User 类
+        class User {
+            String name;
+            int age;
+            int id;
+
+            public User(String name, int age, int id) {
+                this.name = name;
+                this.age = age;
+                this.id = id;
+            }
+
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) return true;
+                if (o == null || getClass() != o.getClass()) return false;
+                User user = (User) o;
+                // 自定义相等条件：只有 id 一样就相等
+                return id == user.id;
+            }
+
+            @Override
+            public int hashCode() {
+                // 自定义哈希值：只使用 id 作为哈希值
+                return Objects.hash(id);
+            }
+        }
+
+        // 创建 User 对象
+        User user1 = new User("user1", 18, 1);
+        User user2 = new User("user1", 18, 1); // 与 user1 的 id 相同
+        User user3 = new User("user3", 19, 2); // 不同 id
+
+        // 创建 Map
+        Map<Object, String> map = new HashMap<>();
+
+        // 将键值对放入 Map
+        map.put(1, "Value1");
+        map.put(user3, "Value3");
+
+        // 验证条件
+        System.out.println(map.get(1));          // 输出: Value1
+        System.out.println(map.get(user2));      // 输出: Value1 (因为 user2 的 id == 1，与键 1 相等)
+        System.out.println(map.get(user3));      // 输出: Value3 (user3 的 id == 2，与键 1 不相等)
+    }
+}
+~~~
+
