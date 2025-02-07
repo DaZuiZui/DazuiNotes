@@ -59,6 +59,8 @@ public class Main {
 
 如果我们要进行重写要保证2个对象通过equals方法判断相等，他们的hashCode也要返回相同的值。这样才能保证对象相等和哈希值的一致性，确保使用集合不发生意外。
 
+简单而言，比如两个人都叫张三，他们equal肯定为ture，但是他们并不是同一个人，hashcode更像他们的IC来区别
+
 ## equals和hashcode的检查顺序
 
 是先判断hashcode然后在判断equals更加精确的判断。
