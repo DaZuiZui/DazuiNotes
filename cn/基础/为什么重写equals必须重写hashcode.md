@@ -8,6 +8,15 @@ equals就是判断两个对象是否相等，**Hashcode就是返回对象的哈�
 
 已HashMap和HashSet为例子吧，如果我们重写equals方法没有重写Hashcode会导致Hash 表无法正确的存储对象，因为他俩会根据Hashcode来确定存储位置，如果我们没重写可能会根据Object的类而实现，即使通过我们的equals判断是相同的，但是他们的hashcode也可能不同，导致我们Hash表无法正确存储，可能会出现一些重复的k-v，也会无法正确的找到对象。
 
+
+简单一句话
+**equals 在整个程序设计中你可以把它理解为IC上的name，name可能n个人会重复，但是绝对不会是同一个人。**
+
+**hashcode就是IC上的id code。他每个人都有一个独立的， 但是他绝对不会重复。**
+
+
+
+**你想知道2个人是不是一个人，不能根据名字去判断，因为谁都可能叫Bryan。一定要根据他的身份证号看。**
 ~~~java
 import java.util.HashMap;
 import java.util.HashSet;
@@ -58,6 +67,8 @@ public class Main {
 
 
 如果我们要进行重写要保证2个对象通过equals方法判断相等，他们的hashCode也要返回相同的值。这样才能保证对象相等和哈希值的一致性，确保使用集合不发生意外。
+
+简单而言，比如两个人都叫张三，他们equal肯定为ture，但是他们并不是同一个人，hashcode更像他们的IC来区别
 
 ## equals和hashcode的检查顺序
 
