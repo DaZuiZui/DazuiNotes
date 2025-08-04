@@ -4,15 +4,15 @@
 
 其实主要就几个部分组成吧
 
-skyWalking的基本链路追踪原理。
+**skyWalking的基本链路追踪原理。**
 
-Trace、Span、Segment概念
+**Trace、Span、Segment概念**
 
-自动埋点(Agent方法)
+**自动埋点(Agent方法)**
 
-手动埋点
+**手动埋点**
 
-数据上报与链路拼接原理
+**数据上报与链路拼接原理**
 
 ## 1.链路追踪点基本原理
 
@@ -24,7 +24,7 @@ SkyWalking的链路追踪主要依赖 分布式调用链，通过服务调用的
 
 ​	2.每个服务（或者进程）中由skywalking agent拦截请求，建立span（表示一次调用调用或者方法执行）	
 
-​    3.通过ContextCarrier在RPC、HTTP、MQ等边界传递上下文，爆炸TraceID在不同服务间传递。
+​    3.通过ContextCarrier在RPC、HTTP、MQ等边界（边界是跨线程或者跨服务的分界点）传递上下文，爆炸TraceID在不同服务间传递。
 
 ​	4.所有采集的数据（Segment）最终发送到OAP Server聚合，形成可视化的链路，方便运维和开发人员查看。
 
@@ -36,9 +36,15 @@ SkyWalking的链路追踪主要依赖 分布式调用链，通过服务调用的
 
 一个Trace包含多个Span
 
-### 2.2 Segment 服务调用段
+### 2.2 Segment 
 
 表示某个服务实列内部产生的调用片段。
+
+每个segment对应多个span组成
+
+### 2.3 Span
+
+表示一次方法的执行，数据库调用，外部http请求（主系统主动向其他服务或者第三方系统发起http请求）。
 
 Span类型：
 
@@ -46,6 +52,10 @@ Span类型：
 ​	服务出口（比如HTTP调用下游）
 
 ​	Localspan： 服务内部逻辑
+
+ 
+
+​		
 
 ## 3. 自动埋点（Agent方法）
 
@@ -95,7 +105,7 @@ OAP Server 汇聚链路
 
 ​	接受Agent上报的Segment
 
-​	根据TraceId + segmentId拼接完整的链路。
+​	**根据TraceId + segmentId拼接完整的链路。**
 
 ​	持久化保存
 
