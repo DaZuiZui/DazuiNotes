@@ -26,7 +26,11 @@
 ​	然后用户完成支付我们后端等待webhook的回调，常见的事件有
 
 ```java
-payment_intent.succeeded`、`invoice.paid`、`checkout.session.completed`、`charge.refunded`、`invoice.payment_failed
+checkout.session.completed - 支付完成
+payment_intent.succeeded - 支付成功
+invoice.paid - 支付成功
+invoice.payment_failed - 支付失败
+charge.refunded - 已退款
 ```
 
 当我们后端收到了回调以后首先会校验Stripe- signature（使用endpoint secret（密钥））冰验证timestamp防止replay。
@@ -170,7 +174,7 @@ webhook多次发送，幂等策略避免重复发送
   - 若金额不一致 → 记录差异并告警，由财务/法务审核。
 - 记录所有对账结果供审计。
 
-##  19. **Webhook retry 的指数退避如何配置？**
+###  19. **Webhook retry 的指数退避如何配置？**
 
 - A 要点：
   - Stripe 会重试 3 次（默认），时间间隔：5m, 30m, 2h。
@@ -180,3 +184,16 @@ webhook多次发送，幂等策略避免重复发送
     - 第 3 次：延迟 5 分钟。
     - 第 4 次：进入 DLQ，告警。
   - 指数退避公式：`delay = base_delay * (2 ^ attempt_count)`。
+
+### **20. 如何设计幂等 key（idempotency key）？**
+
+- A 要点：
+  - 格式：`{user_id}_{product_id}_{timestamp}_v{version}`。
+  - 或使用 UUID + 某个业务标识。
+  - 规则：同一个 idempotency key 在短时间内（如 24 小时）若重复请求，返回之前的结果。
+  - 存储：在 DB 的 `Requests` 表，记录 key + response。
+  - 使用场景：防止用户在前端重复点击"支付"按钮。
+
+### 21. 如何确定一致性
+
+所有这类的问题都是等webhook回调，和幂等处理
